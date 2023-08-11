@@ -33,7 +33,7 @@ class UsersActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView(){
-        binding.usersRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.usersRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
         adapter = UsersAdapter()
         binding.usersRecyclerView.adapter = adapter
         displayUsers()
