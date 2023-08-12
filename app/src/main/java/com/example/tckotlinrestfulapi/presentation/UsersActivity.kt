@@ -2,7 +2,6 @@ package com.example.tckotlinrestfulapi.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -127,8 +126,27 @@ class UsersActivity : AppCompatActivity() {
         val response = usersViewModel.updateUsers()
         response.observe(this, Observer {
             if (it != null){
-                adapter.setList(it)
+                val firstRow = it.slice(0..9)
+                val secondRow = it.slice(10..19)
+                val thirdRow = it.slice(20..29)
+                val fourthRow = it.slice(30..39)
+                val fifthRow = it.slice(40..49)
+
+                adapter.setList(firstRow)
                 adapter.notifyDataSetChanged()
+
+                adapterSecondRow.setList(secondRow)
+                adapterSecondRow.notifyDataSetChanged()
+
+                adapterThirdRow.setList(thirdRow)
+                adapterThirdRow.notifyDataSetChanged()
+
+                adapterFourthRow.setList(fourthRow)
+                adapterFourthRow.notifyDataSetChanged()
+
+                adapterFifthRow.setList(fifthRow)
+                adapterFifthRow.notifyDataSetChanged()
+
                 binding.usersProgressBar.visibility = View.GONE
             }else{
                 binding.usersProgressBar.visibility = View.GONE
