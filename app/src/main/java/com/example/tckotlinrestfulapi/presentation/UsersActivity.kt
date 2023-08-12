@@ -2,6 +2,9 @@ package com.example.tckotlinrestfulapi.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -29,6 +32,9 @@ class UsersActivity : AppCompatActivity() {
         usersViewModel = ViewModelProvider(this, factory)
             .get(UsersViewModel::class.java)
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
         initRecyclerView()
     }
 
@@ -54,4 +60,33 @@ class UsersActivity : AppCompatActivity() {
         })
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu_update, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.action_update -> {
+                updateUsers()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun updateUsers(){
+        binding.usersProgressBar.visibility = View.VISIBLE
+        val response = usersViewModel.updateUsers()
+        response.observe(this, Observer {
+            if (it != null){
+                adapter.setList(it)
+                adapter.notifyDataSetChanged()
+                binding.usersProgressBar.visibility = View.GONE
+            }else{
+                binding.usersProgressBar.visibility = View.GONE
+            }
+        })
+    }
 }
