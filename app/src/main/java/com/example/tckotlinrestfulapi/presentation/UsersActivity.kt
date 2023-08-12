@@ -49,27 +49,22 @@ class UsersActivity : AppCompatActivity() {
 
     private fun initRecyclerView(){
 
-        // First Row
         binding.usersRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
         adapter = UsersAdapter()
         binding.usersRecyclerView.adapter = adapter
 
-        // Second Row
         binding.rvSecondRow.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
         adapterSecondRow = SecondRowUsersAdapter()
         binding.rvSecondRow.adapter = adapterSecondRow
 
-        // Third Row
         binding.rvThirdRow.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
         adapterThirdRow = ThirdRowUsersAdapter()
         binding.rvThirdRow.adapter = adapterThirdRow
 
-        // Fourth Row
         binding.rvFourthRow.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
         adapterFourthRow = FourthRowUsersAdapter()
         binding.rvFourthRow.adapter = adapterFourthRow
 
-        // Fifth Row
         binding.rvFifthRow.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
         adapterFifthRow = FifthRowUsersAdapter()
         binding.rvFifthRow.adapter = adapterFifthRow
@@ -87,29 +82,19 @@ class UsersActivity : AppCompatActivity() {
                 val thirdRow = it.slice(20..29)
                 val fourthRow = it.slice(30..39)
                 val fifthRow = it.slice(40..49)
-                Log.i("TAG LIST", firstRow.toString())
-                Log.i("TAG LIST", secondRow.toString())
-                Log.i("TAG LIST", thirdRow.toString())
-                Log.i("TAG LIST", fourthRow.toString())
-                Log.i("TAG LIST", fifthRow.toString())
 
-                // First Row
                 adapter.setList(firstRow)
                 adapter.notifyDataSetChanged()
 
-                // Second Row
                 adapterSecondRow.setList(secondRow)
                 adapterSecondRow.notifyDataSetChanged()
 
-                // Third Row
                 adapterThirdRow.setList(thirdRow)
                 adapterThirdRow.notifyDataSetChanged()
 
-                // Fourth Row
                 adapterFourthRow.setList(fourthRow)
                 adapterFourthRow.notifyDataSetChanged()
 
-                // Fourth Row
                 adapterFifthRow.setList(fifthRow)
                 adapterFifthRow.notifyDataSetChanged()
 
